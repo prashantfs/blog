@@ -1,17 +1,77 @@
-<div class="article-meta">
-  <a [routerLink]="['/profile', article.user.username]">
-    <img [src]="article.user.profile_image" />
-  </a>
 
-  <div class="info">
-    <a class="author"
-      [routerLink]="['/profile', article.user.username]">
-      {{ article.user.username }}
-    </a>
-    <span class="date">
-      {{ article.createdAt | date: 'longDate' }}
-    </span>
+<ng-conatiner *ngIf="article._index === 'twitter_posts_index'">
+  <div class="article-meta">
+    <p>
+      <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" />
+    </p>
+
+    <div class="info">
+      <p class="author">
+        {{ article._source.username }}
+      </p>
+      <span class="date">
+        {{ article.createdAt | date: 'longDate' }}
+      </span>
+    </div>
+
+    <ng-content></ng-content>
   </div>
+</ng-conatiner>
 
-  <ng-content></ng-content>
-</div>
+
+<ng-conatiner *ngIf="article._index === 'youtube_posts_index'">
+  <div class="article-meta">
+    <p>
+      <img [src]="article._source.Videothumbnail" />
+    </p>
+
+    <div class="info">
+      <p class="author">
+        {{ article._source.username }}
+      </p>
+      <span class="date">
+        {{ article.createdAt | date: 'longDate' }}
+      </span>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</ng-conatiner>
+
+<ng-conatiner *ngIf="article._index === 'technical_articles_index'">
+  <div class="article-meta">
+    <p>
+      <img [src]="article._source.profileImage" />
+    </p>
+
+    <div class="info">
+      <p class="author">
+        {{ article._source.username }}
+      </p>
+      <span class="date">
+        {{ article._source.createdAt | date: 'longDate' }}
+      </span>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</ng-conatiner>
+
+<ng-conatiner *ngIf="article._index === 'news_articles_index'">
+  <div class="article-meta">
+    <p>
+      <img src="https://static01.nyt.com/images/2018/03/08/business/08STATE-tear/07STATE-tear-jumbo.jpg" />
+    </p>
+
+    <div class="info">
+      <p class="author">
+        {{ (article._source.creator && article._source.creator.length > 0) ? article._source.creator[0]: '' }}
+      </p>
+      <span class="date">
+        {{ article._source.publishedDate | date: 'longDate' }}
+      </span>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</ng-conatiner>

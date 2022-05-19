@@ -82,7 +82,7 @@ export class AuthComponent implements OnInit {
   }
   onItemSelect(item: any) {
     // console.log(item);
-    this.authForm.get("media").patchValue(item.item_text)
+    this.authForm.get("media").patchValue(item.item_id)
     // console.log(this.authForm.value) 
   }
   onSelectAll(items: any) {

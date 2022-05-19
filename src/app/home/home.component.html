@@ -20,7 +20,14 @@
         (onSelectAll)="onSelectAll($event)"
       >
       </ng-multiselect-dropdown></div>
-      <div class="col-3"></div>
+      <div class="col-3">
+
+        <input
+        placeholder="Keyboard Search"
+        class="form-control form-control-lg"
+        (keyup)="onSelectAll($event.target)"
+        type="text" />
+      </div>
     <!-- </div> -->
 
     <div class="row">
@@ -37,8 +44,7 @@
             </li> -->
             <li class="nav-item">
               <a class="nav-link"
-                 [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}"
-                 (click)="setListTo('all')">
+                 [ngClass]="{'active': listConfig.type === 'all' && !listConfig.filters.tag}">
                  Global Feed
               </a>
             </li>

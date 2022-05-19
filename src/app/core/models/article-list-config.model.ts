@@ -1,6 +1,6 @@
 export interface ArticleListConfig {
   type: string;
-
+  searchQuery?: string,
   filters: {
     tag?: string,
     author?: string,

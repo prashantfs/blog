@@ -19,6 +19,7 @@ export class ArticleListComponent {
   @Input() limit: number;
   @Input()
   set config(config: ArticleListConfig) {
+    console.log(config)
     if (config) {
       this.query = config;
       this.currentPage = 1;
@@ -71,8 +72,19 @@ export class ArticleListComponent {
     this.articlesService.query(this.query)
     .subscribe(data => {
       this.loading = false;
-      this.results = data;
-
+      if(data && data.data && data.data[0] && data.data[0].postsdata) {
+        this.results = data.data[0].postsdata;
+        console.log(this.results)
+      }
+      if (data && data.data && data.data[0] && data.data[0].articlesdata) {
+        this.results = data.data[0].articlesdata;
+        console.log(this.results)
+      }
+      if (data && data.data && data.data[0] && data.data[0].newsarticlesdata) {
+        this.results = data.data[0].newsarticlesdata;
+        console.log(this.results)
+      }
+      
       // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
       // this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
     });

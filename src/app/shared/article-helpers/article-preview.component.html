@@ -1,22 +1,78 @@
 <div class="article-preview">
-  <app-article-meta [article]="article">
-    <!-- <app-favorite-button
-      [article]="article"
-      (toggle)="onToggleFavorite($event)"
-      class="pull-xs-right">
-      {{article.favoritesCount}}
-    </app-favorite-button> -->
-  </app-article-meta>
-
-  <a target="_blank" [href]="article.url" class="preview-link">
-    <h1>{{ article.title }}</h1>
-    <p>{{ article.description }}</p>
-    <span>Read more...</span>
-    <ul class="tag-list">
-      <li class="tag-default tag-pill tag-outline"
-        *ngFor="let tag of article.tag_list">
-        {{ tag }}
-      </li>
-    </ul>
-  </a>
+  <ng-conatiner *ngIf="article._index === 'twitter_posts_index'">
+    <app-article-meta [article]="article">
+    </app-article-meta>
+    <a target="_blank" [href]="article._source.post_url" class="preview-link">
+      <h1 >{{ article._source.description }}</h1>
+      <!-- <p >{{ article.text }}</p> -->
+      <!-- <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1> -->
+      <p>{{ article._source.description }}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline"
+          *ngFor="let tag of article.tag_list">
+          {{ tag }}
+        </li>
+      </ul>
+    </a>
+  </ng-conatiner>
+  <ng-conatiner *ngIf="article._index === 'youtube_posts_index'">
+    <app-article-meta [article]="article">
+    </app-article-meta>
+    <a target="_blank" [href]="article._source.url" class="preview-link">
+      <h1 >{{ article._source.videoTitle }}</h1>
+      <!-- <p >{{ article.text }}</p> -->
+      <!-- <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1> -->
+      <p>{{ article._source.Videodescription }}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline"
+          *ngFor="let tag of article.tag_list">
+          {{ tag }}
+        </li>
+      </ul>
+    </a>
+  </ng-conatiner>
+  <ng-conatiner *ngIf="article._index === 'technical_articles_index'">
+    <app-article-meta [article]="article">
+    </app-article-meta>
+    <a target="_blank" [href]="article._source.url" class="preview-link">
+      <h1 >{{ article._source.articleTitle }}</h1>
+      <!-- <p >{{ article.text }}</p> -->
+      <!-- <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1> -->
+      <p>{{ article._source.articleDescription }}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline"
+          *ngFor="let tag of article.tag_list">
+          {{ tag }}
+        </li>
+      </ul>
+    </a>
+  </ng-conatiner>
+  <ng-conatiner *ngIf="article._index === 'news_articles_index'">
+    <app-article-meta [article]="article">
+    </app-article-meta>
+    <a target="_blank" [href]="article._source.link" class="preview-link">
+      <h1 >{{ article._source.title }}</h1>
+      <!-- <p >{{ article.text }}</p> -->
+      <!-- <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1>
+      <h1>{{ article.title }}</h1> -->
+      <p>{{ article._source.description }}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline"
+          *ngFor="let tag of article._source.keywords">
+          {{ tag }}
+        </li>
+      </ul>
+    </a>
+  </ng-conatiner>
 </div>

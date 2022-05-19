@@ -24,7 +24,10 @@ export class ArticlesService {
     return this.apiService
     .post(
       'search_keyword?searchQuery=javascript',
-      new HttpParams({ fromObject: params })
+      {
+        mediaType: config.type,
+        searchQuery: config.searchQuery
+      }
     );
   }
 
