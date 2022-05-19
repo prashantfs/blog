@@ -9,6 +9,11 @@ import { ArticleListConfig, TagsService, UserService } from '../core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  mediaType = '';
+  keywordsearch = '';
   constructor(
     private router: Router,
     private tagsService: TagsService,
@@ -24,6 +29,24 @@ export class HomeComponent implements OnInit {
   tagsLoaded = false;
 
   ngOnInit() {
+
+    this.dropdownList = [
+      { item_id: 'TwitterPosts', item_text: 'Twitter' },
+      { item_id: 'YoutubePosts', item_text: 'Youtube' },
+      { item_id: 'TechnicalArticles', item_text: 'Technical Articles' },
+      { item_id: 'NewsArticles', item_text: 'News Articles' },
+      { item_id: 'BlogArticles', item_text: 'Blog Articles' }
+    ];
+    this.selectedItems = [];
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
     this.userService.isAuthenticated.subscribe(
       (authenticated) => {
         this.isAuthenticated = authenticated;
@@ -37,11 +60,11 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.tagsService.getAll()
-    .subscribe(tags => {
-      this.tags = tags;
-      this.tagsLoaded = true;
-    });
+    // this.tagsService.getAll()
+    // .subscribe(tags => {
+    //   this.tags = tags;
+    //   this.tagsLoaded = true;
+    // });
   }
 
   setListTo(type: string = '', filters: Object = {}) {
@@ -53,5 +76,17 @@ export class HomeComponent implements OnInit {
 
     // Otherwise, set the list object
     this.listConfig = {type: type, filters: filters};
+  }
+
+  onItemSelect(item: any) {
+    // console.log(item);
+    this.mediaType = item.item_text
+    // console.log(this.authForm.value) 
+  }
+  onSelectAll(items: any) {
+    // console.log(items);onSelectAll
+
+    // this.keywordsearch.get("keywordsearch").patchValue(items.value)
+    this.keywordsearch = items.value
   }
 }

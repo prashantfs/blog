@@ -7,6 +7,11 @@ import { Article, ArticleListConfig, ArticlesService } from '../../core';
   templateUrl: './article-list.component.html'
 })
 export class ArticleListComponent {
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  mediaType = '';
+  keywordsearch = '';
   constructor (
     private articlesService: ArticlesService
   ) {}
@@ -19,6 +24,27 @@ export class ArticleListComponent {
       this.currentPage = 1;
       this.runQuery();
     }
+  }
+
+  ngOnInit(){
+
+    this.dropdownList = [
+      { item_id: 'TwitterPosts', item_text: 'Twitter' },
+      { item_id: 'YoutubePosts', item_text: 'Youtube' },
+      { item_id: 'TechnicalArticles', item_text: 'Technical Articles' },
+      { item_id: 'NewsArticles', item_text: 'News Articles' },
+      { item_id: 'BlogArticles', item_text: 'Blog Articles' }
+    ];
+    this.selectedItems = [];
+    this.dropdownSettings = {
+      singleSelection: true,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
 
   query: ArticleListConfig;
@@ -50,5 +76,17 @@ export class ArticleListComponent {
       // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
       // this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
     });
+  }
+
+  onItemSelect(item: any) {
+    // console.log(item);
+    this.mediaType = item.item_text
+    // console.log(this.authForm.value) 
+  }
+  onSelectAll(items: any) {
+    // console.log(items);onSelectAll
+
+    // this.keywordsearch.get("keywordsearch").patchValue(items.value)
+    this.keywordsearch = items.value
   }
 }

@@ -5,11 +5,14 @@ import { AuthComponent } from './auth.component';
 import { NoAuthGuard } from './no-auth-guard.service';
 import { SharedModule } from '../shared';
 import { AuthRoutingModule } from './auth-routing.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   imports: [
     SharedModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    NgMultiSelectDropDownModule.forRoot()
+
   ],
   declarations: [
     AuthComponent
