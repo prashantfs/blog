@@ -83,20 +83,23 @@ export class HomeComponent implements OnInit {
     // console.log(item);
     this.mediaType = item.item_id
     // console.log(this.authForm.value) 
-    console.log(this.mediaType)
-    if(this.keywordsearch && this.keywordsearch.length > 3) {
-      this.listConfig = {type: this.mediaType, filters: {}, searchQuery: this.keywordsearch};
-    } else {
-      this.listConfig = {type: this.mediaType, filters: {}};
-    }
+    // console.log(this.mediaType)
+    // if(this.keywordsearch && this.keywordsearch.length > 3) {
+    //   this.listConfig = {type: this.mediaType, filters: {}, searchQuery: this.keywordsearch};
+    // } else {
+    //   this.listConfig = {type: this.mediaType, filters: {}};
+    // }
   }
   onSelectAll(items: any) {
     // console.log(items);onSelectAll
 
     // this.keywordsearch.get("keywordsearch").patchValue(items.value)
     this.keywordsearch = items.value
-    console.log(this.keywordsearch)
-    if(this.keywordsearch && this.keywordsearch.length > 3) {
+    // console.log(this.keywordsearch)
+  }
+
+  search() {
+    if(this.keywordsearch) {
       this.listConfig = {type: this.mediaType, filters: {}, searchQuery: this.keywordsearch};
     } else {
       this.listConfig = {type: this.mediaType, filters: {}};
