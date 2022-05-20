@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.dropdownList = [
-      { item_id: 'TwitterPosts', item_text: 'Twitter' },
-      { item_id: 'YoutubePosts', item_text: 'Youtube' },
-      { item_id: 'TechnicalArticles', item_text: 'Technical Articles' },
+      { item_id: 'Twitter', item_text: 'Twitter' },
+      { item_id: 'Youtube', item_text: 'Youtube' },
+      { item_id: 'TechArticle', item_text: 'Technical Articles' },
       { item_id: 'NewsArticles', item_text: 'News Articles' },
       { item_id: 'BlogArticles', item_text: 'Blog Articles' }
     ];
