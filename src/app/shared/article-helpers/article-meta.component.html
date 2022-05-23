@@ -1,18 +1,21 @@
 
 <ng-conatiner *ngIf="article._index === 'twitter_posts_index'">
   <div class="article-meta">
-    <p>
-      <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-superJumbo-v4.jpg" />
-    </p>
-
+    <a target="_blank" [href]="article._source.user_url">
+      <img [src]="article._source.profile_image_url">
+    </a>
     <div class="info">
-      <p class="author">
+      <a  target="_blank" class="author" [href]="article._source.user_url">
         {{ article._source.username }}
-      </p>
+      </a>
       <span class="date">
-        {{ article.createdAt | date: 'longDate' }}
+        {{ article._source.createdAt | date: 'longDate' }}
       </span>
     </div>
+    <span class="pull-xs-right">
+      <button class="btn btn-sm btn-outline-primary"><i class="ion-heart"></i> {{article._source.favourites}}</button>
+      <button class="btn btn-sm btn-outline-primary"><i class="ion-chatbox"></i> {{article._source.totaltweets}}</button>
+    </span>
 
     <ng-content></ng-content>
   </div>
@@ -21,18 +24,24 @@
 
 <ng-conatiner *ngIf="article._index === 'youtube_posts_index'">
   <div class="article-meta">
-    <p>
-      <img [src]="article._source.Videothumbnail" />
-    </p>
 
+    <a target="_blank" [href]="article._source.Channelurl">
+      <img [src]="article._source.ChannelbrandingSettings.image.bannerExternalUrl">
+    </a>
     <div class="info">
-      <p class="author">
-        {{ article._source.username }}
-      </p>
+      <a  target="_blank" class="author" [href]="article._source.Channelurl">
+        {{ article._source.ChannelbrandingSettings.channel.title }}
+      </a>
       <span class="date">
-        {{ article.createdAt | date: 'longDate' }}
+        {{ article._source.publishedAt | date: 'longDate' }}
       </span>
     </div>
+    <span class="pull-xs-right">
+      <button class="btn btn-sm btn-outline-primary"><i class="ion-heart"></i> {{article._source.Videostatistics.likeCount}}</button>
+      &nbsp;<button class="btn btn-sm btn-outline-info"><i class="ion-eye"></i> {{article._source.Videostatistics.viewCount}}</button>
+      &nbsp;&nbsp;<button class="btn btn-sm btn-outline-info"><i class="ion-chatbox"></i> {{article._source.Videostatistics.commentCount}}</button>
+    </span>
+
 
     <ng-content></ng-content>
   </div>
@@ -40,38 +49,57 @@
 
 <ng-conatiner *ngIf="article._index === 'technical_articles_index'">
   <div class="article-meta">
-    <p>
-      <img [src]="article._source.profileImage" />
-    </p>
 
+    <a target="_blank" [href]="article._source.profileUrl">
+      <img [src]="article._source.profileImage">
+    </a>
     <div class="info">
-      <p class="author">
+      <a  target="_blank" class="author" [href]="article._source.profileUrl">
         {{ article._source.username }}
-      </p>
+      </a>
       <span class="date">
-        {{ article._source.createdAt | date: 'longDate' }}
+        {{ article._source.publishedAt | date: 'longDate' }}
       </span>
     </div>
-
+    <span class="pull-xs-right">
+      <button class="btn btn-sm btn-outline-primary"><i class="ion-heart"></i> {{article._source.positiveReactionsCount}}</button>
+    </span>
     <ng-content></ng-content>
   </div>
 </ng-conatiner>
 
 <ng-conatiner *ngIf="article._index === 'news_articles_index'">
   <div class="article-meta">
-    <p>
-      <img src="https://static01.nyt.com/images/2018/03/08/business/08STATE-tear/07STATE-tear-jumbo.jpg" />
-    </p>
-
+    <span >
+      <img [src]="article._source.imageUrl ? article._source.imageUrl : imageNews">
+    </span>
     <div class="info">
-      <p class="author">
-        {{ (article._source.creator && article._source.creator.length > 0) ? article._source.creator[0]: '' }}
-      </p>
+      <span  target="_blank" class="author">
+        {{ article._source.language | titlecase }} (language)
+      </span>
       <span class="date">
         {{ article._source.publishedDate | date: 'longDate' }}
       </span>
     </div>
+    <ng-content></ng-content>
+    <ng-content></ng-content>
+  </div>
+</ng-conatiner>
 
+<ng-conatiner *ngIf="article._index === 'blog_articles_index'">
+  <div class="article-meta">
+    <a target="_blank" [href]="article._source.channelLink">
+      <img [src]="article._source.channelImage">
+    </a>
+    <div class="info">
+      <a target="_blank" class="author" [href]="article._source.channelLink" class="author">
+        {{ article._source.author | titlecase }}
+      </a>
+      <span class="date">
+        {{ article._source.publishedDate | date: 'longDate' }}
+      </span>
+    </div>
+    <ng-content></ng-content>
     <ng-content></ng-content>
   </div>
 </ng-conatiner>

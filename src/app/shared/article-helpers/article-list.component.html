@@ -4,15 +4,15 @@
   [article]="article">
 </app-article-preview>
 
-<div class="app-article-preview"
+<div class="app-article-preview" style="margin: 1px; margin-top: 15px;"
   [hidden]="!loading">
-  Loading articles...
+  <h4>Loading articles...</h4>
 </div>
 
-<!-- <div class="app-article-preview"
+<div class="app-article-preview" style=" margin: 1px;   margin-top: 15px;"
   [hidden]="loading || results.length">
-  No articles are here... yet.
-</div> -->
+  <h4>No articles are here... yet.</h4>
+</div>
 
 <nav [hidden]="loading || totalPages.length <= 1">
   <ul class="pagination">
