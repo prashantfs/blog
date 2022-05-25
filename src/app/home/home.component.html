@@ -16,7 +16,6 @@
         [data]="dropdownList"
         [(ngModel)]="selectedItems"
         (onSelect)="onItemSelect($event)"
-        (onSelectAll)="onSelectAll($event)"
       >
       </ng-multiselect-dropdown></div>
       <div class="col-md-4">
@@ -24,7 +23,8 @@
         <input
         placeholder="Keyboard Search"
         class="form-control form-control-lg"
-        (keyup)="onSelectAll($event.target)"
+        [(ngModel)]="keywordsearch"
+        (keyup)="onSelectAll()"
         type="text" />
       </div>
       <div class="col-md-4">
@@ -32,9 +32,9 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top: 2%;">
 
-      <div class="col-md-12">
+      <div class="col-md-9">
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
             <!-- <li class="nav-item">
@@ -59,6 +59,28 @@
         </div>
 
         <app-article-list [limit]="10" [config]="listConfig"></app-article-list>
+      </div>
+
+      <div class="col-md-3" *ngIf="tags && tags.length > 0">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a *ngFor="let tag of tags"
+            (click)="selectKeyword(tag)"
+               class="tag-default tag-pill">
+               {{ tag }}
+            </a>
+          </div>
+
+          <!-- <div [hidden]="tagsLoaded">
+            Loading tags...
+          </div> -->
+
+          <!-- <div [hidden]="!tagsLoaded">
+            No tags are here... yet.
+          </div> -->
+        </div>
       </div>
 
     </div>

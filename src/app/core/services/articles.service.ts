@@ -23,7 +23,7 @@ export class ArticlesService {
 
     return this.apiService
     .post(
-      'search_keyword?searchQuery=javascript',
+      'search_keyword',
       {
         mediaType: config.type,
         searchQuery: config.searchQuery
@@ -31,9 +31,25 @@ export class ArticlesService {
     );
   }
 
-  get(slug): Observable<Article> {
-    return this.apiService.get('/articles/' + slug)
-      .pipe(map(data => data.article));
+  get(config: any): Observable<any> {
+    let tempObj
+    if(config.searchQuery) {
+      tempObj =
+      {
+        network: config.type,
+        search_keyword: config.searchQuery
+      }
+    } else {
+
+      tempObj =
+      {
+        network: config.type
+      }
+    }
+    return this.apiService
+    .post(
+      'get_keyword_suggestion', tempObj
+    );
   }
 
   destroy(slug) {

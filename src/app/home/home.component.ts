@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ArticleListConfig, TagsService, UserService } from '../core';
+import { ArticleListConfig, ArticlesService, TagsService, UserService } from '../core';
 
 @Component({
   selector: 'app-home-page',
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private tagsService: TagsService,
-    private userService: UserService
+    private userService: UserService,
+    private articlesService: ArticlesService
   ) {}
 
   isAuthenticated: boolean;
@@ -82,6 +83,7 @@ export class HomeComponent implements OnInit {
   onItemSelect(item: any) {
     // console.log(item);
     this.mediaType = item.item_id
+    // this.retrieveGetKeywordSuggestion()
     // console.log(this.authForm.value) 
     // console.log(this.mediaType)
     // if(this.keywordsearch && this.keywordsearch.length > 3) {
@@ -90,11 +92,11 @@ export class HomeComponent implements OnInit {
     //   this.listConfig = {type: this.mediaType, filters: {}};
     // }
   }
-  onSelectAll(items: any) {
+  onSelectAll() {
     // console.log(items);onSelectAll
-
+    console.log(this.keywordsearch)
     // this.keywordsearch.get("keywordsearch").patchValue(items.value)
-    this.keywordsearch = items.value
+    // this.keywordsearch = items.value
     // console.log(this.keywordsearch)
   }
 
@@ -104,5 +106,26 @@ export class HomeComponent implements OnInit {
     } else {
       this.listConfig = {type: this.mediaType, filters: {}};
     }
+    this.retrieveGetKeywordSuggestion()
+  }
+
+
+  retrieveGetKeywordSuggestion() {
+    let tempData = {type: this.mediaType, searchQuery: this.keywordsearch}
+    this.articlesService.get(tempData)
+    .subscribe(data => {
+      console.log(data)
+      if(data && data.data && data.data[0] && data.data[0].Suggestions) {
+        this.tags = data.data[0].Suggestions;
+        this.tagsLoaded = true;
+      }
+      // Used from http://www.jstips.co/en/create-range-0...n-easily-using-one-line/
+      // this.totalPages = Array.from(new Array(Math.ceil(data.articlesCount / this.limit)), (val, index) => index + 1);
+    });
+  }
+
+  selectKeyword(keyword) {
+    this.keywordsearch = keyword
+    this.search()
   }
 }

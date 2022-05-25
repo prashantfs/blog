@@ -11,11 +11,16 @@
       <!-- <p>{{ article._source.description }}</p> -->
       <!-- <span>Read more...</span> -->
       <a target="_blank"  [href]="article._source.post_url" class="btn btn-sm btn-outline-info"><i class="ion-link"></i> Visit Post</a>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
+      <ul class="tag-list" style="max-width: 60% !important">
+        <ng-container *ngFor="let tag of article._source.hashtags; let index = index">
+        <li class="tag-default tag-pill tag-outline"  *ngIf="index < 6">
+            {{ tag }}
+          </li>
+        </ng-container>
+        <!-- <li class="tag-default tag-pill tag-outline"
           *ngFor="let tag of article._source.hashtags">
           {{ tag }}
-        </li>
+        </li> -->
       </ul>
     </span>
   </ng-conatiner>
@@ -36,12 +41,13 @@
       <p>{{ (article._source.Videodescription.length>150)? article._source.Videodescription.substring(0, 150) + ' ....' : article._source.Videodescription.length }}</p>
       <!-- <span>Read more...</span> -->
       <a target="_blank"  [href]="article._source.url" class="btn btn-sm btn-outline-info"><i class="ion-link"></i> Visit Post</a>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
-          *ngFor="let tag of article.tags">
-          {{ tag }}
-        </li>
-      </ul>
+      <ul class="tag-list" style="max-width: 60% !important">
+        <ng-container *ngFor="let tag of article._source.tags; let index = index">
+        <li class="tag-default tag-pill tag-outline"  *ngIf="index < 6">
+            {{ tag }}
+          </li>
+        </ng-container>
+        </ul>
     </span>
   </ng-conatiner>
 
@@ -56,11 +62,16 @@
       <h1 >{{ article._source.articleTitle }}</h1>
       <p>{{ article._source.articleDescription }}</p>
       <a target="_blank"  [href]="article._source.url" class="btn btn-sm btn-outline-info"><i class="ion-link"></i> Visit Article</a>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
+      <ul class="tag-list" style="max-width: 60% !important">
+        <!-- <li class="tag-default tag-pill tag-outline"
           *ngFor="let tag of article._source.tagList">
           {{ tag }}
-        </li>
+        </li> -->
+        <ng-container *ngFor="let tag of article._source.tagList; let index = index">
+        <li class="tag-default tag-pill tag-outline"  *ngIf="index < 6">
+            {{ tag }}
+          </li>
+        </ng-container>
       </ul>
     </span>
   </ng-conatiner>
@@ -74,11 +85,16 @@
       <h1 >{{ article._source.title }}</h1>
       <p>{{ article._source.description }}</p>
       <a target="_blank"  [href]="article._source.link" class="btn btn-sm btn-outline-info"><i class="ion-link"></i> Visit Article</a>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
+      <ul class="tag-list" style="max-width: 60% !important">
+        <!-- <li class="tag-default tag-pill tag-outline"
           *ngFor="let tag of article._source.keywords">
           {{ tag }}
-        </li>
+        </li> -->
+        <ng-container *ngFor="let tag of article._source.keywords; let index = index">
+        <li class="tag-default tag-pill tag-outline"  *ngIf="index < 6">
+            {{ tag }}
+          </li>
+        </ng-container>
       </ul>
     </span>
   </ng-conatiner>
@@ -91,11 +107,16 @@
       <h1 >{{ article._source.postTitle }}</h1>
       <p [innerHTML]="article._source.postDescription"></p>
       <a target="_blank"  [href]="article._source.postLink" class="btn btn-sm btn-outline-info"><i class="ion-link"></i> Visit Article</a>
-      <ul class="tag-list">
-        <li class="tag-default tag-pill tag-outline"
+      <ul class="tag-list" style="max-width: 60% !important">
+        <!-- <li class="tag-default tag-pill tag-outline"
           *ngFor="let tag of article._source.categories">
           {{ tag }}
-        </li>
+        </li> -->
+        <ng-container *ngFor="let tag of article._source.categories; let index = index">
+        <li class="tag-default tag-pill tag-outline"  *ngIf="index < 6">
+            {{ tag }}
+          </li>
+        </ng-container>
       </ul>
     </span>
   </ng-conatiner>
