@@ -101,6 +101,7 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
+    this.tags = []
     if(this.keywordsearch) {
       this.listConfig = {type: this.mediaType, filters: {}, searchQuery: this.keywordsearch};
     } else {

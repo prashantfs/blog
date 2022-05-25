@@ -9,7 +9,7 @@
 
   <div class="container page">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-5">
         <ng-multiselect-dropdown
         [placeholder]="'Select Type Of Article'"
         [settings]="dropdownSettings"
@@ -18,7 +18,7 @@
         (onSelect)="onItemSelect($event)"
       >
       </ng-multiselect-dropdown></div>
-      <div class="col-md-4">
+      <div class="col-md-5">
 
         <input
         placeholder="Keyboard Search"
@@ -27,7 +27,7 @@
         (keyup)="onSelectAll()"
         type="text" />
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2">
         <button (click)="search()" class="btn btn-lg btn-primary-outline">Search</button>
       </div>
     </div>

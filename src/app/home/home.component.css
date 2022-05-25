@@ -5,3 +5,12 @@
 .tag-pill{
   cursor:pointer;
 }
+
+.tag-default {
+  background-color: #3998df !important;
+}
+
+
+.multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+  min-width: 35% !important;
+}
